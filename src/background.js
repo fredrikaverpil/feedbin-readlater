@@ -36,16 +36,25 @@ chrome.action.onClicked.addListener((tab) => {
           injectAndSendMessage(tab.id, false, errorMessage);
         });
     } else {
-      console.error("Feedbin username and/or password not set.");
-      // Handle the case where credentials are not set
+      const errorMessage = `Feedbin username and/or password not set.`;
+      console.error(errorMessage);
+      injectAndSendMessage(tab.id, false, errorMessage);
     }
   });
 });
 
 function injectAndSendMessage(tabId, success, error = "") {
-  chrome.tabs.sendMessage(tabId, {
-    action: "showBanner",
-    success: success,
-    error: error,
-  });
+  chrome.scripting.executeScript(
+    {
+      target: { tabId: tabId },
+      files: ["content.js"],
+    },
+    () => {
+      chrome.tabs.sendMessage(tabId, {
+        action: "showBanner",
+        success: success,
+        error: error,
+      });
+    },
+  );
 }

@@ -8,9 +8,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     banner.style.backgroundColor = request.success ? "green" : "red";
     banner.style.color = "white";
     banner.style.zIndex = "1000";
+
+    // Display a detailed error message if available
     banner.innerText = request.success
       ? "Page bookmarked successfully in Feedbin!"
-      : "Failed to bookmark the page in Feedbin.";
+      : request.error || "Failed to bookmark the page in Feedbin.";
 
     document.body.appendChild(banner);
 
