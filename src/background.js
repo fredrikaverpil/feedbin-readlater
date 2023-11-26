@@ -36,7 +36,7 @@ chrome.action.onClicked.addListener((tab) => {
           injectAndSendMessage(tab.id, false, errorMessage);
         });
     } else {
-      const errorMessage = `Feedbin username and/or password not set.`;
+      const errorMessage = `Feedbin username and/or password not set. See extension options.`;
       console.error(errorMessage);
       injectAndSendMessage(tab.id, false, errorMessage);
     }
