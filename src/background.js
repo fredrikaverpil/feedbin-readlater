@@ -1,21 +1,3 @@
-// chrome.action.onClicked.addListener((tab) => {
-//     if (!tab.url) {
-//         console.error("No URL found for the current tab.");
-//         return;
-//     }
-//
-//     const encodedUrl = encodeURIComponent(tab.url);
-//     const encodedTitle = encodeURIComponent(tab.title);
-//     const feedbinUrl = `https://feedbin.com/pages?url=${encodedUrl}&title=${encodedTitle}`;
-//
-//     // Open a new tab with the Feedbin URL
-//     chrome.tabs.create({ url: feedbinUrl }, (newTab) => {
-//         // You can add additional logic here if needed, like closing the tab after a delay
-//         // Or check if the page was successfully added (if possible)
-//     });
-// });
-//
-
 chrome.action.onClicked.addListener((tab) => {
   if (!tab.url) {
     console.error("No URL found for the current tab.");
@@ -67,4 +49,3 @@ function injectAndSendMessage(tabId, success, error = "") {
     error: error,
   });
 }
-
